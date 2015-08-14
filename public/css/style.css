@@ -1,0 +1,56 @@
+.tab-img {
+  width: 150px;
+  cursor: pointer;
+}
+
+.ico {
+  font-size: 15pt;
+}
+
+.ico:hover {
+  cursor: pointer;
+}
+
+.edit-ico {
+  margin-bottom: 10px;
+  color: cornflowerblue;
+}
+
+.del-ico {
+  color: orangered;
+}
+
+.spec-b {
+  cursor: pointer;
+}
+
+.spec-b:hover {
+  color: slategrey;
+}
+
+.url-input {
+  margin-top: 10px;
+}
+
+.form-bike {
+  margin: 0 auto;
+  min-width: 450px;
+  max-width: 900px;
+}
+
+tbody>tr {
+  height: 150px;
+}
+
+.tb {
+  /*margin-top: 15px;*/
+}
+
+.tb-img {
+  /*background-color: white;*/
+  vertical-align: middle !important;  
+}
+
+.tb-serial {
+  width: 13%;
+}

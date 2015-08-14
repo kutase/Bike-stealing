@@ -1,0 +1,4 @@
+--harmony
+--harmony_arrow_functions
+--require should
+-R spec

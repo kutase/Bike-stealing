@@ -1,0 +1,44 @@
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Фото</th>
+      <th>Дата угона</th>
+      <th>Город</th>
+      <th>Серийный номер</th>
+      <th>Модель</th>
+      <th>Цвет</th>
+      <th>Особые приметы</th>
+      <th></th>
+    </tr>          
+  </thead>
+  <tbody>
+  <!-- ko foreach: bikes -->
+    <tr>
+      <td class="tb" data-bind="text: $index()+1"></td>
+      <td class="tb-img tb"><img data-bind="attr: {src: photo}, click: main.fullSize" class="tab-img"></td>
+      <td class="tb" data-bind="text: date"></td>
+      <td id="city" class="tb" data-bind="text: city"></td>
+      <td class="tb tb-serial" data-bind="text: serial"></td>
+      <td class="tb" data-bind="text: model"></th>
+      <td class="tb" data-bind="text: color"></td>
+      <td class="tb">
+        <span data-bind="text: fullSpec"></span>
+        <span class="spec-b" data-bind="if: special().length > 200, toggle: isFullSpec">
+          <i title="More" class="fa fa-book spec-b"></i>
+        </span>
+      </td>
+      <td class="tb" data-bind="if: !main.user.isOwner(serial)">
+      <a>
+        <span class="glyphicon glyphicon-edit ico edit-ico" aria-hidden="true">
+        </span>
+      </a>
+      <a data-bind="click: main.delBike">
+        <span class="glyphicon glyphicon-remove-circle ico del-ico" aria-hidden="true">
+        </span>
+      </a>
+      </td>
+    </tr>
+  <!-- /ko -->
+  </tbody>
+</table>      

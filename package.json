@@ -1,0 +1,33 @@
+{
+  "name": "bike-stealing",
+  "version": "0.0.1",
+  "description": "Data base of stolen bikes",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "kutase123 <kutase123@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "*",
+    "express": "*",
+    "knockout.mapping": "^2.4.3",
+    "lodash": "^3.10.1",
+    "mongoose": "*",
+    "multer": "^1.0.3",
+    "pagerjs": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-runtime": "^5.8.20",
+    "del": "^1.2.0",
+    "express": "^4.13.3",
+    "gulp": "^3.9.0",
+    "gulp-nodemon": "^2.0.3",
+    "mocha": "^2.2.5",
+    "mocha-mongoose": "^1.0.4",
+    "mongodb": "^1.4.39",
+    "mongoose": "^4.1.1",
+    "request": "^2.60.0",
+    "should": "^7.0.2"
+  }
+}
