@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    BikeSchema = require('./bikeschema');
+    BikeSchema = require('./BikeSchema');
 
 // configure mongoose schemas
 var configure = () => {

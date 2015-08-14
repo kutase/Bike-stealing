@@ -8,6 +8,8 @@ configureDB();
 
 var router = require('./routes');
 
+const PORT = 1337;
+
 app.use(express.static('public'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,6 +22,6 @@ app.use((err, req, res, next) => {
 
 app.use(router);
 
-http.listen(1337, function () {
+http.listen(PORT, function () {
   console.log("listening on *:1337");
 });

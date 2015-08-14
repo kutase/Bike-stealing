@@ -1,7 +1,5 @@
 var router = require('express').Router(),
-    controller = require('./controller'),
-    multer = require('multer'),
-    upload = multer({ dest: 'uploads/' });
+    controller = require('./controller');
 
 // router.route('/')
 // .get((req, res) => {
@@ -17,6 +15,6 @@ router.route('/bikes/:id')
 .delete(controller.del_bike);
 
 router.route('/img/upload')
-.post(upload.single('bike-img'), controller.get_img);
+.post(controller.get_img);
 
 module.exports = router;

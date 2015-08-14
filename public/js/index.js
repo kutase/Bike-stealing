@@ -50,17 +50,9 @@ var main = {
       console.error(err);
     })
   },
-  uploadImg: function () {
-    console.log(event.target.file[0]);
-  },
-  fullSize: function () {
-    var img = $(event.target);
-    if (img.width() == 150) {
-      img.width(img.get(0).naturalWidth);
-    } else {
-      img.width(150);
-    }
-  },
+  fileData: ko.observable({
+    dataURL: ko.observable()
+  }),
   fullSpec: function (data) {
     var spec = $(event.target).parent().parent().children()[0];
     console.log(spec);
@@ -113,6 +105,9 @@ $(function () {
   pager.start();
   main.getBikes(function () {
     $.fn.editable.defaults.mode = 'inline'; //x-editable inline mode
-    $('city').editable();
+    $('#city').editable();
+  });
+  main.fileData().dataURL.subscribe(function(dataURL){
+    console.log(dataURL)
   });
 })
