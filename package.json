@@ -9,7 +9,7 @@
   "author": "kutase123 <kutase123@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "bluebird": "*",
+    "bluebird": "^2.9.34",
     "express": "*",
     "knockout.mapping": "^2.4.3",
     "lodash": "^3.10.1",

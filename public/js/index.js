@@ -50,8 +50,18 @@ var main = {
       console.error(err);
     })
   },
+  sendImg: function (img) {
+    console.log(img);
+    $.post('/img/upload', {img: img})
+    .done(function (data) {
+      console.log(data);
+    })
+    .fail(function (err) {
+      console.error(err);
+    })
+  },
   fileData: ko.observable({
-    dataURL: ko.observable()
+    dataURL: ko.observable(),
   }),
   fullSpec: function (data) {
     var spec = $(event.target).parent().parent().children()[0];
@@ -108,6 +118,6 @@ $(function () {
     $('#city').editable();
   });
   main.fileData().dataURL.subscribe(function(dataURL){
-    console.log(dataURL)
+    main.sendImg(dataURL)
   });
 })
