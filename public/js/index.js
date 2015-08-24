@@ -1,7 +1,7 @@
 var main = {
   bikes: ko.observableArray([]),
   currentSpec: ko.observable(""),
-  getBikes: function (cb) {
+  getBikes: function () {
     $.get('/bikes')
     .done(function (data) {
       data.forEach(function (el) {
@@ -15,7 +15,6 @@ var main = {
           }
         })
         main.bikes.push(el)
-        cb && cb();
       })
       // main.user.bikes.push(main.bikes()[0])
     })
@@ -31,7 +30,7 @@ var main = {
       main.bikes().push(ko.mapping.fromJS(bike));
       main.user.bikes().push(ko.mapping.fromJS(bike));
       ko.mapping.fromJS(form.bike.default,{},form.bike);
-      location.hash = "#!/";
+      pager.navigate("#!/");
     })
     .fail(function (err) {
       console.error(err);
@@ -50,11 +49,20 @@ var main = {
       console.error(err);
     })
   },
+  editBike: function (data) {
+    ko.mapping.fromJS(data,{},form.updateBike);
+    console.log(ko.mapping.toJS(form.updateBike));
+    pager.navigate('#!/edit-bike');
+  },
+  updateBike: function () {
+
+  },
   sendImg: function (img) {
     console.log(img);
     $.post('/img/upload', {img: img})
     .done(function (data) {
       console.log(data);
+      form.bike.photo(data.url);
     })
     .fail(function (err) {
       console.error(err);
@@ -113,11 +121,8 @@ $(function () {
   pager.extendWithPage(main);
   ko.applyBindings(main);
   pager.start();
-  main.getBikes(function () {
-    $.fn.editable.defaults.mode = 'inline'; //x-editable inline mode
-    $('#city').editable();
-  });
+  main.getBikes();
   main.fileData().dataURL.subscribe(function(dataURL){
-    main.sendImg(dataURL)
+    main.sendImg(dataURL);
   });
 })

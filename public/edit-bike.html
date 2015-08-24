@@ -1,5 +1,5 @@
-<form class="form-horizontal form-bike" data-bind="submit: main.addBike" autocomplete="off">
-  <fieldset data-bind="with: form.bike">
+<form class="form-horizontal form-bike" data-bind="submit: main.updateBike" autocomplete="off">
+  <fieldset data-bind="with: form.updateBike">
     <div class="form-group">
       <legend>Bike stealing registration</legend>
 
@@ -24,10 +24,11 @@
     </div>
     <div class="form-group">
       <label>Photo</label>
+      <img data-bind="attr: {src: photo}" class="tab-img">
       <div class="well" data-bind="fileDrag: main.fileData">
           <div class="form-group row">
               <div class="col-md-6">
-                  <img style="height: 125px;" class="img-rounded  thumb" data-bind="attr: { src: main.fileData().dataURL }, visible: main.fileData().dataURL">
+                  <img style="height: 125px;" class="img-rounded thumb" data-bind="attr: { src: main.fileData().dataURL }, visible: main.fileData().dataURL">
                   <div data-bind="ifnot: main.fileData().dataURL">
                       <label class="drag-label">Drag image here</label>
                   </div>

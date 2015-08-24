@@ -46,7 +46,8 @@
 
     <div class="container">
       <div data-bind="page: {id: null, title: 'Home', sourceOnShow: '/home.html'}" style="display:none;"></div>
-      <div data-bind="page: {id: 'add-bike', title: 'Add bike to base', sourceOnShow: 'add-bike.html'}" style="display:none;"></div>     
+      <div data-bind="page: {id: 'add-bike', title: 'Add bike to base', sourceOnShow: 'add-bike.html'}" style="display:none;"></div>
+      <div data-bind="page: {id: 'edit-bike', title: 'Edit bike information', sourceOnShow: '/edit-bike.html'}" style="display:none;"></div>
     </div> <!-- /container -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -56,8 +57,7 @@
     <script src="lib/knockout-file-bindings.js"></script>
     <script src="lib/knockout.mapping.js"></script>
     <script src="lib/pager.js"></script>
-    <script src="js/bootstrap-editable.min.js"></script>
-    <script src="js/custombindings.js"></script>
+    <script src="js/customBindings.js"></script>
     <script src="js/index.js"></script>
     <script src="js/form.js"></script>
   </body>
