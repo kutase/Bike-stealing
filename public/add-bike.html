@@ -1,53 +1,62 @@
-<form class="form-horizontal form-bike" data-bind="submit: main.addBike" autocomplete="off">
+<form data-bind="submit: main.addBike" autocomplete="off">
   <fieldset data-bind="with: form.bike">
-    <div class="form-group">
-      <legend>Bike stealing registration</legend>
-
-      <label>Date of stealing</label>
-      <input data-bind="value: date" placeholder="Date" type="date" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label></label>
-      <input data-bind="value: city" placeholder="City" type="text" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label></label>
-      <input data-bind="value: serial" placeholder="Serial number" type="text" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label></label>
-      <input data-bind="value: model" placeholder="Bike model" type="text" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label></label>
-      <input data-bind="value: color" placeholder="Bike color" type="text" class="form-control">
-    </div>
-    <div class="form-group">
-      <label>Photo</label>
-      <div class="well" data-bind="fileDrag: main.fileData">
-          <div class="form-group row">
-              <div class="col-md-6">
-                  <img style="height: 125px;" class="img-rounded  thumb" data-bind="attr: { src: main.fileData().dataURL }, visible: main.fileData().dataURL">
-                  <div data-bind="ifnot: main.fileData().dataURL">
-                      <label class="drag-label">Drag image here</label>
-                  </div>
-              </div>
-              <div class="col-md-6">
-                  <input type="file" data-bind="fileInput: main.fileData, customFileInput: {
-                    buttonClass: 'btn btn-success',
-                    fileNameClass: 'disabled form-control'
-                  }" accept="image/*">
-              </div>
-          </div>
+    <legend>Bike stealing registration</legend>
+    <div class="row">
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <div class="form-group">
+          <label>Serial number</label>
+          <input data-bind="textInput: serial" placeholder="Serial number" type="text" class="form-control" required>
+        </div>
       </div>
-      <input data-bind="value: photo, attr: {disabled: main.fileData().dataURL()? 'disabled':null}, " placeholder="Or use URL" type="link" class="form-control url-input" type="date">
+      <div class=" col-sm-4 col-md-4 col-lg-4">
+        <div class="form-horizontal">
+          <label>Bike color</label>
+          <input data-bind="textInput: color" placeholder="Bike color" type="text" class="form-control">
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <div class="form-group">
+          <label>Bike model</label>
+          <input data-bind="textInput: model" placeholder="Bike model" type="text" class="form-control" required>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label>Special information</label>    
-      <textarea data-bind="value: special" class="form-control" rows="4"></textarea>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="form-group">
+          <label>Date of stealing</label>
+          <input data-bind="dateValue: date" type="text" class="form-control" placeholder="Date" required>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-default">Submit</button>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="form-group">
+          <label>City</label>
+          <select data-bind="options: main.citiesList, value: city, selectFind: main.citiesList" class="form-control" required></select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="form-group">
+          <label>Photo</label>
+          <div class="dropzone dz-clickable" data-bind="dropzone: { value: photo, url: '/img/upload' }"></div>
+          <span class="help-block">Or use URL</span>
+          <input data-bind="textInput: photo, attr: { disabled: form.bike.photo()? 'disabled':null }" placeholder="URL" type="link" class="form-control" type="date">
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-12">
+        <div class="form-group">
+          <label>Special information</label>    
+          <textarea data-bind="textInput: special" class="form-control" rows="4"></textarea>
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+      </div>
     </div>
   </fieldset>
 </form>

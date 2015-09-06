@@ -4,6 +4,7 @@ var main = {
   getBikes: function () {
     $.get('/bikes')
     .done(function (data) {
+      main.bikes([]);
       data.forEach(function (el) {
         el = ko.mapping.fromJS(el);
         el.isFullSpec = ko.observable(false);
@@ -11,16 +12,20 @@ var main = {
           if (el.isFullSpec()) {
             return el.special();
           } else {
-            return el.special().slice(0, 197)+'...';
+            return el.special().length > 0? el.special().slice(0, 197)+'...' : '';
           }
         })
-        main.bikes.push(el)
+        main.bikes.push(el);
       })
-      // main.user.bikes.push(main.bikes()[0])
     })
     .fail(function (err) {
       console.error(err);
     })
+  },
+  getFullSize: function (data, event) {
+    var el = $(event.target)[0];
+    var width = ($(el).width() !== 150)? 150 : $(el)[0].naturalWidth;
+    $(el).width(width);
   },
   addBike: function () {
     var data = ko.mapping.toJS(form.bike, {ignore: ["default"]});
@@ -42,7 +47,7 @@ var main = {
     var bike_id = data._id();
     $.delete('/bikes/'+bike_id)
     .done(function (status) {
-      console.log(status);
+      console.log(status)
       main.user.delBike(id);
     })
     .fail(function (err) {
@@ -50,19 +55,33 @@ var main = {
     })
   },
   editBike: function (data) {
+    ko.mapping.fromJS(form.updateBike.default,{},form.updateBike);
     ko.mapping.fromJS(data,{},form.updateBike);
-    console.log(ko.mapping.toJS(form.updateBike));
     pager.navigate('#!/edit-bike');
   },
   updateBike: function () {
-
+    var data = ko.mapping.toJS(form.updateBike, {ignore: ['default']});
+    $.put('/bikes/'+form.updateBike._id(), data)
+    .done(function (updated) {
+      var bike_id = _.findIndex(main.bikes(), function (item) {
+        return item._id() === form.updateBike._id();
+      });
+      main.bikes[bike_id] = ko.mapping.fromJS(updated);
+      ko.mapping.fromJS(form.updateBike.default,{},form.updateBike);
+      pager.navigate('#!/');
+    })
+    .fail(function (err) {
+      console.error(err);
+      ko.mapping.fromJS(form.updateBike.default,{},form.updateBike);
+    })
   },
-  sendImg: function (img) {
-    console.log(img);
+  applyImg: function (data) {
+    form(data.url)
+  },
+  sendImg: function (img, form) {
     $.post('/img/upload', {img: img})
     .done(function (data) {
-      console.log(data);
-      form.bike.photo(data.url);
+      form(data.url);
     })
     .fail(function (err) {
       console.error(err);
@@ -71,15 +90,17 @@ var main = {
   fileData: ko.observable({
     dataURL: ko.observable(),
   }),
-  fullSpec: function (data) {
-    var spec = $(event.target).parent().parent().children()[0];
-    console.log(spec);
-    if ($(spec).text().length == 200) {
-      $(spec).text(data.special);
-    } else {
-      $(spec).text(data.special.slice(0,197)+'...');
-    }
+  citiesList: ko.observableArray([]),
+  getCitiesList: function () {
+    $.get('/cities')
+    .done(function (citiesList) {
+      main.citiesList(citiesList);
+    })
+    .fail(function (err) {
+      console.error(err);
+    })
   },
+  currentPath: ko.observable(''),
   user: {
     bikes: ko.observableArray([]),
     isOwner: function(serial){
@@ -99,6 +120,16 @@ var main = {
   }
 }
 
+main.isAddBikePage = ko.computed(function (){
+  return (['add-bike', 'edit-bike'].indexOf(main.currentPath()) === -1);
+});
+
+// var Bike = genius.Resource.extend({
+//   _id: genius.types.string(),
+//   photo: genius.types.string(),
+//   date: 
+// })
+
 jQuery.each(["put", "delete"], function(i, method) {
   jQuery[method] = function(url, data, callback, type) {
     if (jQuery.isFunction(data)) {
@@ -114,15 +145,24 @@ jQuery.each(["put", "delete"], function(i, method) {
       success: callback
     });
   };
-});
+})
 
 $(function () {
   pager.Href.hash = '#!/';
   pager.extendWithPage(main);
-  ko.applyBindings(main);
+  _.extend(ko.bindingHandlers, customBindings);
+  ko.applyBindings(main, document.body);
+  window.main = main;
   pager.start();
-  main.getBikes();
   main.fileData().dataURL.subscribe(function(dataURL){
     main.sendImg(dataURL);
   });
+  var path = window.location.hash.length? window.location.hash.slice(3):'';
+  main.currentPath(path);
+  window.onpopstate = function (){
+    var path = window.location.hash.length? window.location.hash.slice(3):'';
+    main.currentPath(path);
+  };
+  main.getBikes();
+  main.getCitiesList();
 })

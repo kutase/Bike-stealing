@@ -1,5 +1,17 @@
 var router = require('express').Router(),
-    controller = require('./controller');
+    controller = require('./controller'),
+    multer = require('multer'),
+    storage = multer.diskStorage({
+      destination: function (req, file, done) {
+        done(null, 'public/upload/');
+      },
+      filename: function (req, file, done) {
+        console.log(file.mimetype, file.encoding)
+        var type = /\/(\D)+/.exec(file.mimetype)[0].slice(1); // должен быть способ лучше
+        done(null, controller.makeRand(6) + '-' + Date.now() + '.' + type);
+      }
+    }),
+    upload = multer({ storage: storage });
 
 // router.route('/')
 // .get((req, res) => {
@@ -14,7 +26,13 @@ router.route('/bikes/:id')
 .put(controller.update_bike)
 .delete(controller.del_bike);
 
+router.route('/cities')
+.get(controller.get_cities);
+
 router.route('/img/upload')
-.post(controller.get_img);
+.post(upload.single('file'), controller.get_img);
+
+router.route('/upload/:image_name')
+.delete(controller.del_img)
 
 module.exports = router;

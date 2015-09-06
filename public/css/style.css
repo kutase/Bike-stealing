@@ -38,7 +38,7 @@
   max-width: 900px;
 }
 
-tbody>tr {
+#bikes-table>tr {
   height: 150px;
 }
 
@@ -51,10 +51,29 @@ tbody>tr {
   vertical-align: middle !important;  
 }
 
+.tb-btn {
+  width: 48px;
+}
+
 .tb-serial {
   width: 13%;
 }
 
 .input-img {
   width: 150px;
+}
+
+.empty-label {
+  opacity: 0;
+}
+
+.drop_zone {
+  border: 2px dashed #bbb;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 25px;
+  text-align: center;
+  font: 20pt bold'Vollkorn';
+  color: #bbb;
 }

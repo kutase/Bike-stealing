@@ -18,6 +18,7 @@ var form = {
     }
   },
   updateBike: {
+    _id: ko.observable(""),
     photo: ko.observable(""),
     date: ko.observable(""),
     city: ko.observable(""),
@@ -26,6 +27,7 @@ var form = {
     color: ko.observable(""),
     special: ko.observable(""),
     default: {
+      _id: "",
       photo: "",
       date: "",
       city: "",

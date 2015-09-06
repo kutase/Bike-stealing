@@ -10,12 +10,14 @@
   "license": "ISC",
   "dependencies": {
     "bluebird": "^2.9.34",
+    "cheerio": "^0.19.0",
     "express": "*",
     "knockout.mapping": "^2.4.3",
     "lodash": "^3.10.1",
     "mongoose": "*",
     "multer": "^1.0.3",
-    "pagerjs": "^1.0.0"
+    "pagerjs": "^1.0.0",
+    "request": "^2.61.0"
   },
   "devDependencies": {
     "babel-runtime": "^5.8.20",

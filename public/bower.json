@@ -1,0 +1,35 @@
+{
+  "name": "bike-stealing",
+  "version": "0.0.0",
+  "homepage": "https://github.com/kutase123/Bike-stealing",
+  "authors": [
+    "Kutase Chitsu <kutase123@gmail.com>"
+  ],
+  "main": "index.html",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "dropzone": "~4.0.1",
+    "jquery": "~2.1.4",
+    "knockout": "~3.3.0",
+    "knockout-es5": "~0.3.0",
+    "knockout-file-bindings": "~1.0.1",
+    "knockout-mapping": "~2.4.1",
+    "ko-calendar": "~0.2.11",
+    "ko-genius": "*",
+    "lodash": "~3.10.1",
+    "pagerjs": "~1.0.1",
+    "requirejs": "~2.1.20",
+    "requirejs-domready": "domReady#~2.0.1"
+  }
+}

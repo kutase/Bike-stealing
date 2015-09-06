@@ -9,14 +9,14 @@
       <th>Модель</th>
       <th>Цвет</th>
       <th>Особые приметы</th>
-      <th></th>
+      <th class="tb-btn"></th>
     </tr>          
   </thead>
-  <tbody>
+  <tbody id="bikes-table">
   <!-- ko foreach: bikes -->
     <tr>
       <td class="tb" data-bind="text: $index()+1"></td>
-      <td class="tb-img tb"><img data-bind="attr: {src: photo}, click: main.fullSize" class="tab-img"></td>
+      <td class="tb-img tb"><img data-bind="attr: {src: photo}, click: main.getFullSize" class="tab-img"></td>
       <td class="tb" data-bind="text: date"></td>
       <td id="city" class="tb" data-bind="text: city"></td>
       <td class="tb tb-serial" data-bind="text: serial"></td>
@@ -29,14 +29,14 @@
         </span>
       </td>
       <td class="tb" data-bind="if: !main.user.isOwner(serial)">
-      <a data-bind="click: main.editBike">
-        <span class="glyphicon glyphicon-edit ico edit-ico" aria-hidden="true">
-        </span>
-      </a>
-      <a data-bind="click: main.delBike">
-        <span class="glyphicon glyphicon-remove-circle ico del-ico" aria-hidden="true">
-        </span>
-      </a>
+        <a data-bind="click: main.editBike">
+          <span class="glyphicon glyphicon-edit ico edit-ico" aria-hidden="true">
+          </span>
+        </a>
+        <a data-bind="click: main.delBike">
+          <span class="glyphicon glyphicon-remove-circle ico del-ico" aria-hidden="true">
+          </span>
+        </a>
       </td>
     </tr>
   <!-- /ko -->
