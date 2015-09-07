@@ -7,15 +7,20 @@ var customBindings = {
       })
     }
   },
-  // dateValue: {
-  //   init: function (el, val) {
-  //     val = val();
-  //     $(el).datetimepicker({
-  //       format: 'YYYY/MM/DD',
-  //       locale: 'ru'
-  //     });
-  //   }
-  // },
+  dateValue: {
+    init: function (el, val) {
+      val = val();
+      $(el).datepicker({
+        format: 'dd.mm.yyyy',
+        locale: 'ru'
+      });
+      var currentDate = moment(new Date())
+                        .toDate()
+                        .toLocaleDateString();
+      if (val().length === 0)
+        val(currentDate);
+    }
+  },
   selectFind: {
     init: function (el, list) {
       $(el).attr('data-live-search', 'true');
@@ -27,9 +32,15 @@ var customBindings = {
       $(el).selectpicker('refresh');
     }
   },
+  maskedInput: {
+    init: function (el, opts) {
+      console.log($(el))
+      opts = opts();
+      $(el).mask(opts.mask, opts);
+    }
+  },
   dropzone: {
     init: function (el, opts) {
-      window.test = el;
       opts = opts() || {};
 
       var removeImage = function (imageUrl) {
@@ -43,6 +54,9 @@ var customBindings = {
       };
 
       var dropzoneInit = function () {
+        // this.on('addedfile', function (file) {
+        //   opts.valueFile(file);
+        // });
         this.on('success', function (file, resp) {
           if (Array.isArray(opts.value())) // check observableArray
             opts.value.push(resp.url);

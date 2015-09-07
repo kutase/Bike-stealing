@@ -1,6 +1,7 @@
 var form = {
   bike: {
     photo: ko.observable(""),
+    photoFile: ko.observable(null),
     date: ko.observable(""),
     city: ko.observable(""),
     serial: ko.observable(""),
@@ -9,6 +10,7 @@ var form = {
     special: ko.observable(""),
     default: {
       photo: "",
+      photoFile: null,
       date: "",
       city: "",
       serial: "",
@@ -20,6 +22,7 @@ var form = {
   updateBike: {
     _id: ko.observable(""),
     photo: ko.observable(""),
+    photoFile: ko.observable(null),
     date: ko.observable(""),
     city: ko.observable(""),
     serial: ko.observable(""),
@@ -29,6 +32,7 @@ var form = {
     default: {
       _id: "",
       photo: "",
+      photoFile: null,
       date: "",
       city: "",
       serial: "",

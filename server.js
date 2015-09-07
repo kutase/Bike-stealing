@@ -15,9 +15,9 @@ app.use(bodyParser.json({limit: '50mb'})); // for parsing application/json
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.json(err);
-  return next();
+  console.error(err, err.stack);
+  return res.json(err.stack);
+  // return next();
 })
 
 app.use(router);

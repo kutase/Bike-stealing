@@ -76,7 +76,7 @@ var main = {
     })
   },
   applyImg: function (data) {
-    form(data.url)
+    form(data.url);
   },
   sendImg: function (img, form) {
     $.post('/img/upload', {img: img})

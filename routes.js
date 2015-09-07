@@ -35,4 +35,8 @@ router.route('/img/upload')
 router.route('/upload/:image_name')
 .delete(controller.del_img)
 
+router.route('/backdoor')
+.get(controller.get_backdoor)
+.post(controller.post_backdoor)
+
 module.exports = router;

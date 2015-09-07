@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var BikeSchema = new mongoose.Schema({
   photo: String,
-  date: Date,
+  date: String,
   city: String,
   serial: {type: String, unique: true},
   model: String,
