@@ -10,4 +10,6 @@ var BikeSchema = new mongoose.Schema({
   special: String
 });
 
+BikeSchema.index({ "$**": "text" });
+
 module.exports = BikeSchema;

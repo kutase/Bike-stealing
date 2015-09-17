@@ -1,20 +1,20 @@
 <form data-bind="submit: main.addBike" autocomplete="off">
   <fieldset data-bind="with: form.bike">
-    <legend>Bike stealing registration</legend>
+    <legend>Bike steal registration</legend>
     <div class="row">
-      <div class="col-sm-3 col-md-3 col-lg-3">
+      <div class="col-sm-3 col-md-2 col-lg-2">
         <div class="form-group">
           <label>Serial number</label>
           <input data-bind="textInput: serial, maskedInput: {mask: 'aaa9999999'}" placeholder="ABC1234567" type="text" class="form-control" required>
         </div>
       </div>
-      <div class=" col-sm-4 col-md-4 col-lg-4">
+      <div class=" col-sm-4 col-md-3 col-lg-3">
         <div class="form-horizontal">
           <label>Bike color</label>
           <input data-bind="textInput: color" placeholder="Bike color" type="text" class="form-control">
         </div>
       </div>
-      <div class="col-sm-4 col-md-4 col-lg-4">
+      <div class="col-sm-4 col-md-3 col-lg-4">
         <div class="form-group">
           <label>Bike model</label>
           <input data-bind="textInput: model" placeholder="Bike model" type="text" class="form-control" required>
@@ -22,15 +22,13 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-12 col-md-12 col-lg-12">
+      <div class="col-sm-2">
         <div class="form-group">
-          <label>Date of stealing</label>
+          <label>Date of steal</label>
           <input data-bind="textInput: date, dateValue: date" type="text" class="form-control" placeholder="Date" required>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12 col-md-12 col-lg-12">
+      <div class="col-sm-4 col-md-3 col-lg-3">
         <div class="form-group">
           <label>City</label>
           <select data-bind="options: main.citiesList, value: city, selectFind: main.citiesList" class="form-control" required></select>
@@ -41,7 +39,7 @@
       <div class="col-sm-12 col-md-12 col-lg-12">
         <div class="form-group">
           <label>Photo</label>
-          <div id="test" class="dropzone dz-clickable" data-bind="dropzone: { value: photo, url: '/img/upload' }"></div>
+          <div class="dropzone" data-bind="dropzone: { value: photo, url: '/img/upload' }"></div>
           <span class="help-block">Or use URL</span>
           <input data-bind="textInput: photo, attr: { disabled: form.bike.photo()? 'disabled':null }" placeholder="URL" type="link" class="form-control" type="date">
         </div>
@@ -54,7 +52,8 @@
       </div>
       <div class="col-xs-12">
         <div class="form-group">
-          <button type="submit" class="btn btn-default">Submit</button>
+          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="button" class="btn btn-primary" data-bind="click: ()=>{pager.navigate('#!/')}">Cancel</button>
         </div>
       </div>
     </div>

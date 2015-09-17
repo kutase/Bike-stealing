@@ -32,11 +32,26 @@ var customBindings = {
       $(el).selectpicker('refresh');
     }
   },
+  showModal: {
+    init: (el, opts) => {
+      opts = opts();
+      $(el).click(() => {
+        $('#'+opts.id).modal(opts);
+        main.delBikeModal.context(opts.context);
+        main.delBikeModal.element($('#'+opts.id));
+      })
+    }
+  },
   maskedInput: {
     init: function (el, opts) {
-      console.log($(el))
       opts = opts();
       $(el).mask(opts.mask, opts);
+    }
+  },
+  tooltip: {
+    init: (el, opts) => {
+      opts = opts() || {};
+      $(el).tooltip(opts);
     }
   },
   dropzone: {
@@ -86,12 +101,12 @@ var customBindings = {
         });
       };
 
-      $.extend(opts, { 
+      $.extend(opts, {
         acceptedFiles: 'image/*', 
         addRemoveLinks: true,
-        init: dropzoneInit
+        init: dropzoneInit,
+        dictDefaultMessage: 'Drop files here or click to upload.'
       });
-
       $(el).dropzone(opts);
     }
   }

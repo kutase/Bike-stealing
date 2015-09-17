@@ -11,6 +11,7 @@
   "dependencies": {
     "bluebird": "^2.9.34",
     "cheerio": "^0.19.0",
+    "escape-regexp": "0.0.1",
     "express": "*",
     "knockout.mapping": "^2.4.3",
     "lodash": "^3.10.1",

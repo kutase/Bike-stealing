@@ -1,6 +1,6 @@
 var beforeShow = {
   getBikes: () => {
-    main.getBikes();
+    main.getBikes(1, 20);
   },
   editBike: () => {
     var x = 0;

@@ -11,8 +11,8 @@ var router = require('./routes');
 const PORT = 1337;
 
 app.use(express.static('public'));
-app.use(bodyParser.json({limit: '50mb'})); // for parsing application/json
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.json({limit: '15mb'})); // for parsing application/json
+app.use(bodyParser.urlencoded({limit: '15mb', extended: true}));
 
 app.use((err, req, res, next) => {
   console.error(err, err.stack);

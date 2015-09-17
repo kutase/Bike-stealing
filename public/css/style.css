@@ -59,6 +59,10 @@
   width: 13%;
 }
 
+.tb-special {
+  word-wrap: break-word;
+}
+
 .input-img {
   width: 150px;
 }
@@ -76,4 +80,42 @@
   text-align: center;
   font: 20pt bold'Vollkorn';
   color: #bbb;
+}
+
+.bike-input {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.bike-input-float {
+  padding-right: 15px;
+  padding-left: 15px;
+  float: left;
+}
+
+.serial-input {
+  width: 10em;
+}
+
+.color-input {
+  width: 13em;
+}
+
+.model-input {
+  width: 18em;
+}
+
+.date-input {
+  width: 9.2em;
+}
+
+.city-input {
+  width: 18em;
+}
+
+.dropzone {
+  border: 2px dashed #0087F7 !important;
+  border-radius: 5px;
+  background: white;
+  color: #646C7F;
 }

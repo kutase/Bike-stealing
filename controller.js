@@ -1,12 +1,25 @@
+"use strict";
+
 var Promise = require('bluebird'),
     mongoose = Promise.promisifyAll(require('mongoose')),
     Bike = mongoose.model('Bike'),
     fs = Promise.promisifyAll(require("fs")),
-    _ = require('lodash');
+    _ = require('lodash'),
+    escape = require('escape-regexp');
 
 exports.get_bikes = Promise.coroutine(function * (req, res, next) {
+  var count = req.query.count;
+  var page = req.query.page;
+  var filter = req.query.filter;
   try {
-    var bikes = yield Bike.findAsync();
+    if (filter.length !== 0)
+      var params = {$text: {$search: filter}};
+    else
+      var params = {};
+    var bikes = yield Bike.find(params)
+    .skip(count*(page-1))
+    .limit(count);
+
     return res.json(bikes);
   } catch (err) {
     console.error(err.stack);
@@ -88,16 +101,6 @@ exports.makeRand = (len) => {
 }
 
 exports.get_img = (req, res, next) => {
-  // var img = decodeBase64Image(req.body.img);
-  // var name = makeRand(6)+'.'+img.type.slice(6);
-  // var path = '/public/upload/'+name;
-  // fs.writeFileAsync(__dirname+path, img.data)
-  // .then(() => {
-  //   res.json({url: 'http://localhost:1337/upload/'+name});
-  // })
-  // .catch((err) => {
-  //   return next(err);
-  // })
   res.json({url: 'http://localhost:1337/upload/'+req.file.filename})
 }
 
@@ -122,6 +125,25 @@ exports.get_cities = Promise.coroutine(function * (req, res, next) {
   }
 
   res.json(JSON.parse(citiesList));
+})
+
+exports.createTestBikes = Promise.coroutine(function * (req, res, next) {
+  var bikes = [];
+  for (let i = 0; i <= 20000; i++) {
+    let bike = {
+      photo: 'http://www.1001-home-efficiency-tips.com/image-files/trek_mountain_bike1.jpg',
+      date: exports.makeRand(10),
+      city: exports.makeRand(10),
+      serial: exports.makeRand(10),
+      model: exports.makeRand(10),
+      color: exports.makeRand(10),
+      special: exports.makeRand(200)
+    };
+    bikes.push(bike);
+  }
+
+  bikes = yield Bike.createAsync(bikes);
+  res.json(bikes);
 })
 
 exports.get_backdoor = (req, res, next) => {
